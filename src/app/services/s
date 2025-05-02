@@ -1,1 +1,21 @@
-s
+src/
+  app/
+    public/
+      components/
+        header/
+        footer/
+    ipdata/
+      components/
+        ip-card/
+      services/
+        ip.service.ts
+    core/
+    app.component.ts
+    app.component.html
+    app.module.ts
+  assets/
+    i18n/
+      en.json
+      es.json
+  environments/
+    environment.ts
