@@ -1,0 +1,69 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="main-content">
+    <h2>{{ 'LOCATION_DATA_TITLE' | translate }}</h2>
+
+    <div class="search-section">
+      <input
+        [(ngModel)]="ipAddress"
+        [placeholder]="'ENTER_IP_PLACEHOLDER' | translate"
+        class="ip-input">
+      <button
+        (click)="getIpLocation()"
+        [disabled]="!ipAddress || isLoading"
+        class="search-button">
+        {{ isLoading ? ('SEARCHING' | translate) : ('SEARCH' | translate) }}
+      </button>
+    </div>
+
+    @if (errorMessage) {
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+    }
+
+    @for (location of ipLocations; track location.ip) {
+      <div class="location-card">
+        <div class="card-header">
+          <h2>{{ 'IP_ADDRESS' | translate }}: {{ location.ip }}</h2>
+          <span class="ip-type">{{ location.type }}</span>
+        </div>
+
+        <div class="card-body">
+          <div class="location-section">
+            <h3>{{ 'LOCATION_INFO' | translate }}</h3>
+            <p><strong>{{ 'CONTINENT' | translate }}:</strong> {{ location.continent_name }} ({{ location.continent_code }})</p>
+            <p><strong>{{ 'COUNTRY' | translate }}:</strong> {{ location.country_name }} ({{ location.country_code }})</p>
+            <p><strong>{{ 'REGION' | translate }}:</strong> {{ location.region_name }} ({{ location.region_code }})</p>
+            <p><strong>{{ 'CITY' | translate }}:</strong> {{ location.city }}</p>
+            <p><strong>{{ 'ZIP_CODE' | translate }}:</strong> {{ location.zip }}</p>
+            <p><strong>{{ 'COORDINATES' | translate }}:</strong> {{ location.latitude }}, {{ location.longitude }}</p>
+          </div>
+
+          <div class="additional-info">
+            <h3>{{ 'ADDITIONAL_INFO' | translate }}</h3>
+            <p><strong>{{ 'CAPITAL' | translate }}:</strong> {{ location.location?.capital }}</p>
+            <p><strong>{{ 'EU_MEMBER' | translate }}:</strong> {{ location.location?.is_eu ? ('YES' | translate) : ('NO' | translate) }}</p>
+            <p><strong>{{ 'CALLING_CODE' | translate }}:</strong> +{{ location.location?.calling_code }}</p>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <a [href]="location.location?.country_flag" target="_blank" class="footer-link">
+            <mat-icon>flag</mat-icon>
+            {{ 'VIEW_FLAG' | translate }}
+          </a>
+          <a [href]="'https://maps.google.com/?q=' + location.latitude + ',' + location.longitude"
+             target="_blank"
+             class="footer-link">
+            <mat-icon>map</mat-icon>
+            {{ 'VIEW_MAP' | translate }}
+          </a>
+        </div>
+      </div>
+    }
+  </main>
+
+  <app-footer></app-footer>
+</div>
