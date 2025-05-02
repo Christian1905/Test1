@@ -1,0 +1,44 @@
+@if (ipLocation) {
+  <mat-card class="ip-card" [attr.aria-label]="'Location data for IP ' + ipLocation.ip">
+    <mat-card-header>
+      <mat-card-title>{{ ipLocation.ip }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="info-row">
+        <mat-icon aria-hidden="true">public</mat-icon>
+        <span>{{ ipLocation.continent_name }}</span>
+      </div>
+      <div class="info-row">
+        <mat-icon aria-hidden="true">flag</mat-icon>
+        <span>{{ ipLocation.country_name }}</span>
+      </div>
+      <div class="info-row">
+        <mat-icon aria-hidden="true">map</mat-icon>
+        <span>{{ ipLocation.region_name }}</span>
+      </div>
+      <div class="info-row">
+        <mat-icon aria-hidden="true">location_city</mat-icon>
+        <span>{{ ipLocation.city }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a mat-button
+         [href]="ipLocation.location.country_flag"
+         target="_blank"
+         [attr.aria-label]="'See flag of ' + ipLocation.country_name">
+        <mat-icon aria-hidden="true">flag</mat-icon>
+        {{ 'SEE_FLAG' | translate }}
+      </a>
+      <span class="spacer"></span>
+      <a mat-button
+         [href]="googleMapsUrl"
+         target="_blank"
+         [attr.aria-label]="'View location on map for IP ' + ipLocation.ip">
+        <mat-icon aria-hidden="true">map</mat-icon>
+        {{ 'VIEW_ON_MAP' | translate }}
+      </a>
+    </mat-card-actions>
+  </mat-card>
+}

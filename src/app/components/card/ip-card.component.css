@@ -1,0 +1,14 @@
+.ip-card {
+  margin-bottom: 1rem;
+}
+
+.ip-card .info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.ip-card .spacer {
+  flex: 1 1 auto;
+}
