@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <div class="header-content">
+    <div class="logo-section">
+      <mat-icon>location_on</mat-icon>
+      <h1>{{ 'APP_TITLE' | translate }}</h1>
+    </div>
+    <mat-button-toggle-group
+      [(value)]="currentLanguage"
+      (change)="switchLanguage($event.value)">
+      <mat-button-toggle value="en">EN</mat-button-toggle>
+      <mat-button-toggle value="es">ES</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</mat-toolbar>
